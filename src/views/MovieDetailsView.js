@@ -5,6 +5,7 @@ import {
   Route,
   useParams,
   useHistory,
+  useLocation,
 } from 'react-router-dom';
 import s from './MovieDetailsView.module.css';
 // import ReviewsView from '../views/ReviewsView.js';
@@ -18,10 +19,11 @@ const MovieDetailsView = () => {
   const history = useHistory();
   const { movieId } = useParams();
   const { url } = useRouteMatch();
+  const location = useLocation();
   const numbermovieId = Number(movieId);
 
   const goBackPage = () => {
-    history.push(history.location?.state?.from.pathname || '/');
+    history.push(location?.state?.from ?? '/');
   };
   return (
     <>
@@ -30,14 +32,20 @@ const MovieDetailsView = () => {
       </button>
       <MovieDetailsPage />
       <NavLink
-        to={`${url}/cast`}
+        to={{
+          pathname: `${url}/cast`,
+          state: { from: location?.state?.from },
+        }}
         className={s.link}
         activeClassName={s.activeLink}
       >
         Cast
       </NavLink>
       <NavLink
-        to={`${url}/reviews`}
+        to={{
+          pathname: `${url}/reviews`,
+          state: { from: location?.state?.from },
+        }}
         className={s.link}
         activeClassName={s.activeLink}
       >
