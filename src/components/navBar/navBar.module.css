@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+  justify-content: center;
+  background-color: yellowgreen;
+  align-items: center;
+  height: 80px;
+}
+
+.link {
+  margin-right: 42px;
+  color: #fff;
+  font-size: 32px;
+  text-decoration: none;
+}
+
+.activeLink {
+  color: green;
+}

@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.item {
+  list-style: none;
+}
+
+.img {
+  border-radius: 20%;
+}

@@ -20,13 +20,3 @@
   font-size: 30px;
   color: #000000;
 }
-
-.button {
-  border-radius: 8px;
-  background: rgb(66, 64, 64);
-  width: 80px;
-  height: 30px;
-  outline: none;
-  color: #ffffff;
-  font-weight: bold;
-}
