@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import s from './MoviesPage.module.css';
+import defaultImg from '../../img/no-image.jpg';
 
 const MoviesPage = ({ list }) => {
   const location = useLocation();
@@ -9,11 +10,11 @@ const MoviesPage = ({ list }) => {
     <>
       {
         <ul className={s.list}>
-          {list.map(movie => (
-            <li className={s.item} key={movie.id}>
+          {list.map(({ id, title, backdrop_path }) => (
+            <li className={s.item} key={id}>
               <Link
                 to={{
-                  pathname: `/movies/${movie.id}`,
+                  pathname: `/movies/${id}`,
                   state: {
                     from: location,
                   },
@@ -21,10 +22,14 @@ const MoviesPage = ({ list }) => {
               >
                 <img
                   className={s.img}
-                  src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                  alt={movie.title}
+                  src={
+                    backdrop_path
+                      ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
+                      : defaultImg
+                  }
+                  alt={title}
                 />
-                <p className={s.descr}>{movie.title}</p>
+                <p className={s.descr}>{title}</p>
               </Link>
             </li>
           ))}

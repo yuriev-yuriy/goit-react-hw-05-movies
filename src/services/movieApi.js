@@ -68,7 +68,7 @@ export class Backend {
 
   async getByName(value) {
     const response = await fetch(
-      `${this.baseUrl}search/movie?api_key=${KEY}&query=${value}&language=en-US`,
+      `${this.baseUrl}search/movie?api_key=${KEY}&query=${value}&language=en-US&page=1`,
     );
     const data = await response.json();
     return data.results;

@@ -4,13 +4,13 @@ import s from './App.module.css';
 import NavBar from './components/navBar/navBar';
 // import HomeView from './views/HomeView';
 // import MoviesView from './views/MoviesView';
-import MovieDetailsView from './views/MovieDetailsView';
-import NotFoundView from './views/NotFoundView';
+// import MovieDetailsView from './views/MovieDetailsView';
+// import NotFoundView from './views/NotFoundView';
 
 const HomeView = lazy(() => import('./views/HomeView.js'));
 const MoviesView = lazy(() => import('./views/MoviesView.js'));
-// const MovieDetailsView = lazy(() => lazy('./views/MovieDetailsView.js'));
-// const NotFoundView = lazy(() => lazy('./views/NotFoundView.js'));
+const MovieDetailsView = lazy(() => import('./views/MovieDetailsView.js'));
+const NotFoundView = lazy(() => import('./views/NotFoundView.js'));
 
 function App() {
   return (

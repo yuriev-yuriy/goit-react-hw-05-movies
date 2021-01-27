@@ -56,7 +56,7 @@ const MoviesView = () => {
         ></input>
         <button type="submit">Search</button>
       </form>
-      {movies && movies.map(movie => <MoviesPage list={movies} />)}
+      {movies && <MoviesPage list={movies} />}
     </>
   );
 };
