@@ -8,9 +8,12 @@ import {
   useLocation,
 } from 'react-router-dom';
 import s from './MovieDetailsView.module.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
 // import ReviewsView from '../views/ReviewsView.js';
 // import CastView from '../views/CastView.js';
 import MovieDetailsPage from '../components/movieDetailsPage/MovieDetailsPage';
+import { Autocomplete } from '@material-ui/lab';
 
 const ReviewsView = lazy(() => import('./ReviewsView.js'));
 const CastView = lazy(() => import('./CastView.js'));
@@ -21,6 +24,10 @@ const MovieDetailsView = () => {
   const { url } = useRouteMatch();
   const location = useLocation();
   const numbermovieId = Number(movieId);
+  const LoaderComponent = {
+    display: 'flex',
+    justifyContent: 'center',
+  };
 
   const goBackPage = () => {
     history.push(location?.state?.from ?? '/');
@@ -31,27 +38,29 @@ const MovieDetailsView = () => {
         Go back
       </button>
       <MovieDetailsPage />
-      <NavLink
-        to={{
-          pathname: `${url}/cast`,
-          state: { from: location?.state?.from },
-        }}
-        className={s.link}
-        activeClassName={s.activeLink}
-      >
-        Cast
-      </NavLink>
-      <NavLink
-        to={{
-          pathname: `${url}/reviews`,
-          state: { from: location?.state?.from },
-        }}
-        className={s.link}
-        activeClassName={s.activeLink}
-      >
-        Reviews
-      </NavLink>
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <div className={s.App}>
+        <NavLink
+          to={{
+            pathname: `${url}/cast`,
+            state: { from: location?.state?.from },
+          }}
+          className={s.link}
+          activeClassName={s.activeLink}
+        >
+          Cast
+        </NavLink>
+        <NavLink
+          to={{
+            pathname: `${url}/reviews`,
+            state: { from: location?.state?.from },
+          }}
+          className={s.link}
+          activeClassName={s.activeLink}
+        >
+          Reviews
+        </NavLink>
+      </div>
+      <Suspense fallback={<Loader type="ThreeDots" style={LoaderComponent} />}>
         <Route path="/movies/:movieId/reviews">
           <ReviewsView id={numbermovieId} />
         </Route>

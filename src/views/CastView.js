@@ -17,6 +17,10 @@ const CastView = ({ id }) => {
       setCast(dataSlice);
     };
     fetchCast();
+    window.scrollTo({
+      top: document.documentElement.offsetHeight,
+      behavior: 'smooth',
+    });
   }, [id]);
 
   return (
@@ -33,7 +37,7 @@ const CastView = ({ id }) => {
               }
               alt={actor.name}
             />
-            <p>{actor.name}</p>
+            <p className={s.name}>{actor.name}</p>
           </li>
         ))
       ) : (

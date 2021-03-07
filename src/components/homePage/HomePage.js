@@ -1,20 +1,34 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Pagination } from '@material-ui/lab';
 import API from '../../services/movieApi';
 import s from './HomePage.module.css';
-import defaultImg from '../../img/no-image.jpg';
+import defaultImg from '../../img/no-image-small.jpg';
 
 const HomePage = () => {
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
   const location = useLocation();
+  const history = useHistory();
+  const page = new URLSearchParams(location.search).get('page') ?? 1;
 
   useEffect(() => {
     const getMovies = async () => {
-      const data = await API.get('trending/all/day');
-      setMovies(data);
+      const data = await API.get(page);
+      const newList = data.results
+        .map(movie => movie)
+        .filter(movie => movie?.title);
+      setMovies(newList);
+      console.log(newList);
+      setTotalPages(data.total_pages);
     };
     getMovies();
-  }, []);
+  }, [page]);
+
+  const onChangePage = (event, page) => {
+    history.push({ ...location, search: `page=${page}` });
+  };
+
   return (
     <>
       <ul className={s.list}>
@@ -43,6 +57,16 @@ const HomePage = () => {
             </li>
           ))}
       </ul>
+      <Pagination
+        className={s.pag}
+        shape={'round'}
+        count={totalPages}
+        onChange={onChangePage}
+        page={Number(page)}
+        showFirstButton
+        showLastButton
+        size="large"
+      />
     </>
   );
 };

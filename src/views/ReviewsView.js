@@ -9,6 +9,10 @@ const ReviewsView = ({ id }) => {
     const fetchReview = async () => {
       const data = await API.getReview(id);
       setRewiew(data);
+      window.scrollTo({
+        top: document.documentElement.offsetHeight,
+        behavior: 'smooth',
+      });
     };
     fetchReview();
   }, [id]);

@@ -26,11 +26,13 @@ export class Backend {
     return this.baseUrl;
   }
 
-  async get(endpoint) {
+  async get(page) {
     try {
-      const response = await fetch(`${this.baseUrl}${endpoint}?api_key=${KEY}`);
+      const response = await fetch(
+        `${this.baseUrl}trending/all/day?api_key=${KEY}&page=${page}`,
+      );
       const data = await response.json();
-      return data.results;
+      return data;
     } catch (error) {
       throw new Error(error);
     }

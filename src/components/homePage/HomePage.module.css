@@ -17,3 +17,10 @@
 .descr {
   text-align: center;
 }
+
+.pag {
+  display: flex;
+  justify-content: space-around;
+  background: rgb(119, 214, 40);
+  height: 80px;
+}
