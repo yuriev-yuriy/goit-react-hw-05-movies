@@ -19,7 +19,6 @@ const MoviesView = () => {
     e.preventDefault();
     const fetchByName = async () => {
       const data = await API.getByName(value);
-      console.log(data);
       setMovies(data);
     };
     fetchByName();

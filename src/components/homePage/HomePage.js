@@ -19,7 +19,6 @@ const HomePage = () => {
         .map(movie => movie)
         .filter(movie => movie?.title);
       setMovies(newList);
-      console.log(newList);
       setTotalPages(data.total_pages);
     };
     getMovies();

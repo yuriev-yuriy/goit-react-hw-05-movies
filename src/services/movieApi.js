@@ -1,18 +1,5 @@
 const KEY = 'f019aca7974bbfe3a8774b9cae2b67a5';
 
-// async function fetchFunc(url = '') {
-//   const response = await fetch(
-//     url
-//   );
-//   return response.ok
-//     ? await response.json()
-//     : Promise.reject(new Error('Not found'));
-// }
-
-//   export function  fetchTrending() {
-//     return fetchFunc(`${BASE_URL}/trending/all/day?api_key=${KEY}`)
-// }
-
 export class Backend {
   constructor() {
     this.baseUrl = '';
